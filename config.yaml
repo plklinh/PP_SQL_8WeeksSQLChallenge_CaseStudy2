@@ -1,5 +1,0 @@
-database_server:
-  host: localhost
-  password: MyF1rstU$er
-  user: practice_user
-  database: PP_8WSC_pizza_runner
