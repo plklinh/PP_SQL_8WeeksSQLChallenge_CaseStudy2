@@ -7,7 +7,7 @@ drop table if exists runners;
 create table runners (
 	runner_id integer,
     registration_date date,
-    primary key auto increment (runner_id) 
+    primary key (runner_id) 
 );
 insert into runners 
 	(runner_id, registration_date)
@@ -72,7 +72,6 @@ create table runner_orders(
     distance varchar(7),
     duration varchar(18),
     cancellation varchar(23),
-    primary key(order_id),
     constraint FK_runner_orders_runner_id foreign key(runner_id)
 		references runners(runner_id)
 );
@@ -92,16 +91,15 @@ values
   
 drop table if exists customer_orders;
 create table customer_orders (
-	order_id int,
-    customer_id int,
-    pizza_id int,
-    exclusions varchar(4),
-    extras varchar(4),
-    order_time timestamp,
-    constraint FK_customer_orders_pizza_id foreign key(pizza_id)
-		references pizza_names(pizza_id),
-	constraint FK_customer_orders_order_id foreign key(order_id)
-		references runner_orders(order_id)
+	order_line_id int primary key auto_increment,
+  order_id int,
+  customer_id int,
+  pizza_id int,
+  exclusions varchar(4),
+  extras varchar(4),
+  order_time timestamp,
+  constraint FK_customer_orders_pizza_id foreign key(pizza_id)
+  references pizza_names(pizza_id)
 );
 insert into customer_orders
 	(order_id, customer_id, pizza_id, exclusions, extras, order_time)
